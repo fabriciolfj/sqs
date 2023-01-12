@@ -1,2 +1,10 @@
 
 .idea/
+
+*.tfstate
+
+*.backup
+
+terraform/example1/.terraform.lock.hcl
+
+.terraform
