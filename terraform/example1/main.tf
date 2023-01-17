@@ -14,7 +14,7 @@ resource "aws_sqs_queue" "receive" {
 
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.receive_queue_deadletter.arn
-    maxReceiveCount     = 4
+    maxReceiveCount     = 4 #numero de vez para tentar receber a msg antes de mandar a dlq
   })
 
 
@@ -26,5 +26,6 @@ resource "aws_sqs_queue" "receive_queue_deadletter" {
 
   kms_master_key_id                 = "alias/aws/sqs"
   kms_data_key_reuse_period_seconds = 300
+  re
 
 }
