@@ -1,6 +1,6 @@
 # sqs
 ### tempo limite de visibilidade
-- tempo em que o consumidor esta processando a mensagem, caso ele nao retorne no tempo configurado (ainda está processando), ela será entregue a outro consumidor/instância
+- tempo em que o consumidor esta processando a mensagem (mensagem não fica visível para outros consumidores), caso ele nao retorne no tempo configurado (ainda está processando), ela será entregue a outro consumidor/instância
 
 ### fila padrão
 - não garante a ordem
@@ -32,3 +32,17 @@
 - o parâmetro maxReceiveCount, indica o número de vezes o consumidor vai tentar consumir com sucesso a mensagem, antes de falhar definitivamente e ela ser redirecionada a dlq
 - quando uma mensagem de um grupo está sendo processada, as mensagens deste ficam bloqueadas (ele nao recebe outras mensagens). Então em caso de problema na mensagem, falhe rápido
   https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html
+
+### timeout
+- defini um tempo de atraso na entrega da mensagem aos consumidores (deixa a mensagem indisponivel para consumo durante um tempo, quando é adicionada pela primeira vez a fila)
+
+### filas virtuais
+- dentro de um fila, podemos criar filas virtuais e possuir consumidores específicos para elas.
+- exemplo:
+  - fila = produtoprice, fila virtual produtopriveweb e produtopriveapp, ambas vinculadas a fila produtoprive 
+  - para criar deve utuilizar api create queue com a seguinte url: https://sqs.us-east-2.amazonaws.com/123456789012/produtoprice#produtopriveapp
+  - para enviar utilizamos sendMessage("produtoprice#produtopriceapp)
+  - para consumir receiveMessage("produtoprice#produtopriceapp)
+- obs: se as filas virtuais não forem utilizadas durante 5 min, por padrão, são excluídas
+
+https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html
