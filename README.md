@@ -44,5 +44,6 @@
   - para enviar utilizamos sendMessage("produtoprice#produtopriceapp)
   - para consumir receiveMessage("produtoprice#produtopriceapp)
 - obs: se as filas virtuais não forem utilizadas durante 5 min, por padrão, são excluídas
+- as filas virtuais são criadas no envio da mensagem, apenas especificando elas na url da fila padrão
 
 https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html
