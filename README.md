@@ -47,5 +47,3 @@
 - obs: se as filas virtuais não forem utilizadas durante 5 min, por padrão, são excluídas
 - as filas virtuais são criadas no envio da mensagem, apenas especificando elas na url da fila padrão
 - evite utilizar mesmo id de gripo em filas virtuais
-
-https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html
