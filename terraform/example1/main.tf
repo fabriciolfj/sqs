@@ -26,6 +26,13 @@ resource "aws_sqs_queue" "receive_queue_deadletter" {
 
   kms_master_key_id                 = "alias/aws/sqs"
   kms_data_key_reuse_period_seconds = 300
-  re
 
+}
+
+resource "aws_s3_bucket" "sqs" {
+  bucket = "sqs"
+
+  tags = {
+    Environment = "Dev"
+  }
 }

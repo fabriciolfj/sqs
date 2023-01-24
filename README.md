@@ -25,6 +25,7 @@
 
 ### Id de eliminação de duplicação
 - se um id de duplicação for enviado, será aceito mas não será entregue mais de uma 1 vez no intervalo de 5 minutos
+- se a fila estiver configurada para duplicação em conteúdo, o id pode ser omitido
 
 ### dlq
 - uma fila dlq e aonde as mensagens que tiveram falha em seu processamento são enviadas
@@ -45,5 +46,6 @@
   - para consumir receiveMessage("produtoprice#produtopriceapp)
 - obs: se as filas virtuais não forem utilizadas durante 5 min, por padrão, são excluídas
 - as filas virtuais são criadas no envio da mensagem, apenas especificando elas na url da fila padrão
+- evite utilizar mesmo id de gripo em filas virtuais
 
 https://docs.aws.amazon.com/pt_br/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html
