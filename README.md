@@ -1,5 +1,5 @@
 # sqs
-### tempo limite de visibilidade
+### tempo limite de visibilidade (WaitTimeSeconds)
 - tempo em que o consumidor esta processando a mensagem (mensagem não fica visível para outros consumidores), caso ele nao retorne no tempo configurado (ainda está processando), ela será entregue a outro consumidor/instância
 
 ### fila padrão
