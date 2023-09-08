@@ -1,0 +1,8 @@
+
+aws:
+  defaultRegion: sa-east-1
+  dynamodb:
+    endpoint: http://localhost:4566
+  sqs:
+    region: ${AWS_REGION:sa-east-1}
+    url: ${AWS_SQS_URL:http://localhost:4566}
