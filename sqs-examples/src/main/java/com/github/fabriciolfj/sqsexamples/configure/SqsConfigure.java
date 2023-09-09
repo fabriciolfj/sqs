@@ -4,12 +4,11 @@ import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.amazonaws.services.sqs.AmazonSQSAsyncClientBuilder;
-import io.awspring.cloud.messaging.config.QueueMessageHandlerFactory;
-import io.awspring.cloud.messaging.listener.QueueMessageHandler;
-import io.awspring.cloud.messaging.listener.SimpleMessageListenerContainer;
+import io.awspring.cloud.sqs.config.SqsMessageListenerContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import software.amazon.awssdk.services.sqs.SqsAsyncClient;
 
 @Configuration
 public class SqsConfigure {
@@ -21,26 +20,21 @@ public class SqsConfigure {
                 .standard()
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
                 .withEndpointConfiguration(
-                        new AwsClientBuilder.EndpointConfiguration(properties.url, properties.region)
+                        new AwsClientBuilder.EndpointConfiguration(properties.getUrl(), properties.getRegion())
                 )
                 .build();
     }
 
     @Bean
-    public QueueMessageHandler queueMessageHandler(AmazonSQSAsync amazonSQSAsync) {
-        var handler = new QueueMessageHandlerFactory();
-        handler.setAmazonSqs(amazonSQSAsync);
-        return handler.createQueueMessageHandler();
+    public SqsMessageListenerContainerFactory<Object> defaultSqsListenerContainerFactory() {
+        return SqsMessageListenerContainerFactory
+                .builder()
+                .sqsAsyncClient(sqsAsyncClient())
+                .build();
     }
 
     @Bean
-    public SimpleMessageListenerContainer simpleMessageListenerContainer(AmazonSQSAsync amazonSQSAsync, QueueMessageHandler handler) {
-        var simple = new SimpleMessageListenerContainer();
-        simple.setAmazonSqs(amazonSQSAsync);
-        simple.setMessageHandler(handler);
-        simple.setMaxNumberOfMessages(10);
-        simple.setWaitTimeOut(20);
-
-        return simple;
+    public SqsAsyncClient sqsAsyncClient() {
+        return SqsAsyncClient.builder().build();
     }
 }

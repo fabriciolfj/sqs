@@ -4,8 +4,8 @@ resource "aws_sqs_queue" "receive" {
   deduplication_scope   = "messageGroup"
   fifo_throughput_limit = "perMessageGroupId"
   content_based_deduplication = true
-  kms_master_key_id                 = "alias/aws/sqs"
-  kms_data_key_reuse_period_seconds = 300
+  #kms_master_key_id                 = "alias/aws/sqs"
+  #kms_data_key_reuse_period_seconds = 300
 
   visibility_timeout_seconds = 30
   message_retention_seconds = 60
@@ -27,12 +27,4 @@ resource "aws_sqs_queue" "receive_queue_deadletter" {
   kms_master_key_id                 = "alias/aws/sqs"
   kms_data_key_reuse_period_seconds = 300
 
-}
-
-resource "aws_s3_bucket" "sqs" {
-  bucket = "sqs"
-
-  tags = {
-    Environment = "Dev"
-  }
 }
