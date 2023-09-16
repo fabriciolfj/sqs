@@ -1,10 +1,37 @@
 
 .idea/
 
-*.tfstate
+terraform-lambda/package/botocore
 
-*.backup
+terraform-lambda/package/boto3
+
+
+terraform-lambda/package/dateutil
+
+
+terraform-lambda/package/jmespath-1.0.1.dist-info
+
+terraform-lambda/package/
+terraform/example1/terraform.tfstate.backup
+
+terraform/example1/terraform.tfstate
+
+terraform/terraform.tfstate
+
+terraform-lambda/terraform.tfstate
+
+terraform-lambda/terraform.tfstate.backup
 
 terraform/example1/.terraform.lock.hcl
 
-.terraform
+terraform-lambda/.DS_Store
+
+sqs-examples/.DS_Store
+
+.DS_Store
+
+terraform-lambda/.terraform/providers/registry.terraform.io/hashicorp/aws/5.17.0/darwin_amd64/
+
+*.hcl
+
+terraform/example1/.terraform/providers/registry.terraform.io/hashicorp/aws/5.16.1/darwin_amd64/terraform-provider-aws_v5.16.1_x5

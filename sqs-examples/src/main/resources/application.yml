@@ -1,5 +1,5 @@
 
 aws:
   sqs:
-    region: ${AWS_REGION:sa-east-2}
+    region: ${AWS_REGION:us-east-2}
     url: ${AWS_SQS_URL:https://sqs.us-east-2.amazonaws.com}

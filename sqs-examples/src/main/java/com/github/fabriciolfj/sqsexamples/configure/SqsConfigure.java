@@ -30,13 +30,6 @@ public class SqsConfigure {
         return SqsMessageListenerContainerFactory
                 .builder()
                 .sqsAsyncClient(sqsAsyncClient())
-                .configure(c -> {
-                    try {
-                        c.wait(20000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                })
                 .build();
     }
 
